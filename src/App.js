@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+
+//IMPORT BROWSERROUTER
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+//IMPORT
+import NavBar from './components/navBar/navBar';
+import Categories from './components/categories/categories';
+import CreateRoom from './components/createRoom/createRoom';
+import CreateCategory from './components/createCategory/createCategory';
+import RoomList from './components/categories/roomList';
+import SelectedPayCost from './components/categories/selectedPayCost';
+import Rooms from './components/rooms/rooms';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+          <NavBar/>
+          <section>
+            <Switch>
+              <Route path = "/" component={Categories} exact/>
+              <Route path = "/create-room" component={CreateRoom} />
+              <Route path = "/create-category" component={CreateCategory} />
+              <Route path="/room/:id" component={RoomList} exact/>
+              <Route path="/cost/:id/:cid" component={SelectedPayCost}/>
+              <Route path="/view-room" component={Rooms}/>
+            </Switch>
+          </section>
+      </Router>
     </div>
   );
 }
